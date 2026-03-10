@@ -1,7 +1,6 @@
 # T4nMirrors
 Package repo of T4n OS
 
-Tree Repository
 ```
 T4nMirrors
 │
@@ -20,6 +19,12 @@ T4nMirrors
 
 ```
 
+## x86_64
+
 ```
 repository=https://t4n-labs.github.io/T4nMirrors/x86_64
 ```
+
+## x86_64-nonfree
+
+## x86_64-testing
