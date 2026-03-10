@@ -1,0 +1,36 @@
+name: Update XBPS Repo
+
+on:
+  push:
+    paths:
+      - "x86_64/*.xbps"
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Install XBPS tools
+        run: |
+          sudo apt update
+          sudo apt install xbps
+
+      - name: Update repo metadata
+        run: |
+          bash update_repo.sh
+
+      - name: Generate index
+        run: |
+          python3 autogen.py
+
+      - name: Commit changes
+        run: |
+          git config --global user.name "t4n-bot"
+          git config --global user.email "bot@t4nos.dev"
+
+          git add .
+          git commit -m "auto update repo" || echo "no change"
+          git push
